@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import javax.sound.sampled.Line;
 public class StringCalculator {
 	
 	public int add(String numbers) {
@@ -10,7 +12,9 @@ public class StringCalculator {
 			return 0;
 		}
 
-		String [] num=numbers.split(",");
+		//Handle new lines \n and , in input
+		String [] num=numbers.split("\\\\n|,");
+
 		//Output for one number only
 		if(num.length==1) {
 			return Integer.parseInt(num[0]);
@@ -30,7 +34,7 @@ public static void main(String args[]) throws IOException {
       String numbers = bufferReader.readLine();
       
 	  StringCalculator sc=new StringCalculator();
-	  
+
 	  System.out.println(sc.add(numbers));
 	  
 }
