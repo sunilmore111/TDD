@@ -63,7 +63,8 @@ public class StringCalculator implements AddListener {
 	@Override
 	public void addOccured(String numbers) {
 
-		Pattern pattern = Pattern.compile("[//]*[-?0-9]*(\\\\n)?([,*;]?(\\\\n)?[-?0-9]+)+");
+		// Pattern modified for Delimiters of any length
+		Pattern pattern = Pattern.compile("[//]*[-?0-9]*(\\\\n)?([,*;]*(\\\\n)?[-?0-9]+)+");
 
 		try {
 
