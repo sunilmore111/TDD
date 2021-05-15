@@ -45,9 +45,12 @@ public class StringCalculator implements AddListener {
 				if(negative.size() > 0) {
 					throw new Exception("negatives not allowed " + " Negative number passed: "+Arrays.asList(negative));
 				} else {
-					sum = sum + Integer.parseInt(num.get(i));
+					
+					// Ignore numbers greater than 1000
+					if(Integer.parseInt(num.get(i)) <= 1000) {
+						sum = sum + Integer.parseInt(num.get(i));
+					}
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
