@@ -7,11 +7,21 @@ import java.util.List;
 
 public class StringCalculator {
 
+	static int count = 0, sum = 0;
+	
+	// Method to count how many times add () was called
+	public int getCalledCount() {
+		count++;
+		return count;
+	}
+	
 	public int add(String numbers) throws IOException {
-		int sum = 0;
+		
+		getCalledCount();
+		
 		// If String is empty
 		if (numbers.isEmpty()) {
-			return 0;
+			return sum;
 		}
 
 		// Regex to replace all characters except positive and negative numbers in a string
@@ -51,8 +61,19 @@ public class StringCalculator {
 		String numbers = bufferReader.readLine();
 
 		StringCalculator sc = new StringCalculator();
+		
 
-		System.out.println(sc.add(numbers));
-
+		if(numbers.isEmpty()) { 
+			sc.add(numbers); 
+		}else {
+			sc.add(numbers);
+			while(!(numbers=bufferReader.readLine()).isEmpty()) {	
+				sc.add(numbers);
+			}
+		}
+ 
+		System.out.println(sum);
+		
+		System.out.println("The Add() was called "+ count +" times");
 	}
 }
