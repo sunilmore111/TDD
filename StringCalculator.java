@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,15 +17,26 @@ public class StringCalculator {
 		// Regex to replace all characters except positive and negative numbers in a string
 		String nums = numbers.replaceAll("[^-?0-9]+", " ");
 		List<String> num = Arrays.asList(nums.trim().split(" "));
+		ArrayList<Integer> negative = new ArrayList<>();
 		try {
+			
 			for (int i = 0; i < num.size(); i++) {
 
-				// Throw Exception if negative number found and return sum 0
+				// Storing all negative numbers to pass in Exception
 				if(Integer.parseInt(num.get(i)) < 0) {
-					throw new Exception("negatives not allowed " + " Negative number passed: "+Integer.parseInt(num.get(i)));
-				}else {
+					negative.add(Integer.parseInt(num.get(i)));
+				}
+			}	
+			
+			// Handling multiple negative numbers
+			for (int i = 0; i < num.size(); i++) {
+				
+				if(negative.size() > 0) {
+					throw new Exception("negatives not allowed " + " Negative number passed: "+Arrays.asList(negative));
+				} else {
 					sum = sum + Integer.parseInt(num.get(i));
 				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
